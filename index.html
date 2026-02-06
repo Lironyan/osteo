@@ -210,11 +210,24 @@
     </section>
 
     <!-- VOICEFLOW EMBED START -->
-    <!-- Paste your Voiceflow embed snippet below exactly as provided -->
-    <script>
-      // Example placeholder:
-      // (Replace this entire script with your real Voiceflow embed script)
-    </script>
+
+<script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '696951ba53961f1106743a1f' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
+    
     <!-- VOICEFLOW EMBED END -->
   </div>
 </body>
