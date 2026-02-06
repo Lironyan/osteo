@@ -215,14 +215,38 @@
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '696951ba53961f1106743a1f' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production',
-          voice: {
-            url: "https://runtime-api.voiceflow.com"
-          }
-        });
+        v.onload = function() {
+
+  const rtlCSS = `
+    :host, .vfrc-chat, .vfrc-chat * {
+      direction: rtl !important;
+      text-align: right !important;
+      unicode-bidi: plaintext;
+    }
+
+    input, textarea, [contenteditable="true"] {
+      direction: rtl !important;
+      text-align: right !important;
+    }
+  `.trim();
+
+  const cssBase64 = btoa(unescape(encodeURIComponent(rtlCSS)));
+  const cssDataUrl = `data:text/css;base64,${cssBase64}`;
+
+  window.voiceflow.chat.load({
+    verify: { projectID: '696951ba53961f1106743a1f' },
+    url: 'https://general-runtime.voiceflow.com',
+    versionID: 'production',
+    voice: {
+      url: "https://runtime-api.voiceflow.com"
+    },
+    assistant: {
+      stylesheet: cssDataUrl
+    }
+  });
+
+}
+
       }
       v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
   })(document, 'script');
