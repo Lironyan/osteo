@@ -2,10 +2,152 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8" />
-  <title>Voiceflow RTL Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Clinic Assistant Demo (RTL)</title>
 
-  <!-- RTL override for Voiceflow chat -->
+  <!-- Page styling (demo) -->
   <style>
+    :root {
+      --bg: #0b0f19;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 980px;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 600px at 20% 15%, rgba(90,120,255,0.20), transparent 60%),
+        radial-gradient(800px 500px at 85% 25%, rgba(255,120,180,0.16), transparent 55%),
+        radial-gradient(900px 700px at 40% 85%, rgba(120,255,210,0.12), transparent 60%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 44px 18px 60px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* If you add a real logo.png */
+    .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .brand h1 {
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: 0.2px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .hero {
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      margin: 0 0 10px 0;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: 0.2px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .pill { display: none; }
+    }
+
+    .card {
+      border-radius: var(--radius);
+      background: var(--card2);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 18px 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .card ul {
+      margin: 10px 0 0 0;
+      padding-inline-start: 18px;
+    }
+
+    .demo-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.60);
+    }
+
+    /* ===== Voiceflow Chat RTL override (scoped) ===== */
     .vfrc-chat, .vfrc-chat * {
       direction: rtl !important;
       text-align: right !important;
@@ -13,15 +155,67 @@
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <!-- Optional: add a real logo file named logo.png in the repo, then uncomment: -->
+          <!-- <img src="logo.png" alt="Clinic Logo"> -->
+          <span style="font-size:14px; color: rgba(255,255,255,0.8);">🏥</span>
+        </div>
+        <div>
+          <h1>Demo Clinic</h1>
+          <div style="font-size:12px; color: rgba(255,255,255,0.65);">Assistant + Scheduling</div>
+        </div>
+      </div>
+      <div class="pill">דף הדגמה • צ׳אט בעברית (RTL)</div>
+    </header>
 
-  <h1>Voiceflow RTL Demo</h1>
-  <p>בדיקת צ׳אט בעברית + RTL</p>
+    <section class="hero">
+      <h2>עוזר קבלה אוטומטי למרפאה</h2>
+      <p>
+        זהו דף הדגמה פשוט שמראה איך עוזר קבלה יכול לענות על שאלות, להפנות לקביעת תור,
+        ולאסוף פרטים לרשימת המתנה או לחזרה אנושית — גם מחוץ לשעות הפעילות.
+      </p>
+      <div class="demo-note">
+        טיפ: נסה/י לשאול שאלה כללית, ואז בקש/י לקבוע תור — כדי לראות את הזרימה.
+      </div>
+    </section>
 
-  <!-- Voiceflow Embed -->
-  <script>
-    // PASTE YOUR VOICEFLOW EMBED SCRIPT HERE
-  </script>
+    <section class="grid">
+      <div class="card">
+        <h3>מידע (Lorem / placeholder)</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
 
+      <div class="card">
+        <h3>מה העוזר יודע לעשות?</h3>
+        <ul>
+          <li>להפנות לקביעת תור (Calendly)</li>
+          <li>להסביר על שעות פעילות, מחירים ושירותים (KB)</li>
+          <li>לאסוף פרטים לרשימת המתנה</li>
+          <li>לבקש שיחזרו אליך (השארת הודעה)</li>
+          <li>ביטול/שינוי תור דרך המייל של Calendly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- VOICEFLOW EMBED START -->
+    <!-- Paste your Voiceflow embed snippet below exactly as provided -->
+    <script>
+      // Example placeholder:
+      // (Replace this entire script with your real Voiceflow embed script)
+    </script>
+    <!-- VOICEFLOW EMBED END -->
+  </div>
 </body>
 </html>
